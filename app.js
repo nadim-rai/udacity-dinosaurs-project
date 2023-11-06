@@ -1,12 +1,5 @@
 import dinoJson from './dino.json' assert {type: 'json'}
 
-const btn = document.querySelector('#btn');
-
-btn.addEventListener('click',() =>{
-    let humanData = fetchHumanData();
-
-  })
-
  // Create Dino Constructor
  function Dino( species, weight, height, diet, where, when, fact){
     this.species = species;
@@ -79,6 +72,55 @@ Dino.prototype.weightCompare = function(human){
         return this.fact;    
     }
 }
+
+ // Generate Tiles for each Dino in Array
+function generateTile(humanData, dinoData){
+
+    formDino.style.display = "none";
+    const mainGrid = document.querySelector('#grid');
+    
+    dinoData.forEach(element =>{
+      if(element.species === "Pigeon"){
+        element.fact = element.fact;
+      }else{
+        randomFact(element,humanData)
+      }
+    })
+
+    const tiles = [...dinoData.slice(0, 4), humanData, ...dinoData.slice(4)];
+
+    tiles.forEach(element =>{
+        let element_div = document.createElement("div");
+        element_div.setAttribute('class', 'grid-item');
+        let element_h3 = document.createElement("h3");
+        let element_p = document.createElement("p");
+        let element_image = document.createElement("img");
+       
+      if(element.name){
+        element_h3.innerHTML = element.name
+        element_image.setAttribute('src','./images/'+'human'+'.png')
+        element_div.append(element_h3)
+        element_div.append(element_image)
+        mainGrid.append(element_div)
+      }else{
+       
+        element_h3.innerHTML = element.species
+        element_p.innerHTML = element.fact
+        element_image.setAttribute('src','./images/'+ element.species.toLowerCase()+'.png')
+        element_div.append(element_h3)
+        element_div.append(element_p)
+        element_div.append(element_image)
+        mainGrid.append(element_div)
+      }
+    })
+}
+
+// On button click, prepare and display infographic
+const btn = document.querySelector('#btn');
+
+btn.addEventListener('click',() =>{
+    let humanData = fetchHumanData();
+})
 
 //Helper methods
 
