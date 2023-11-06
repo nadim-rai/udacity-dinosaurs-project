@@ -45,3 +45,38 @@ const fetchHumanData = () => {
       }
     )();
   }
+
+// Create Dino Compare Method 1
+Dino.prototype.dietCompare = function(human){
+    if (this.diet ===  human.diet) {
+      this.fact = `Both ${this.species} and ${human.name} are ${this.diet} `;
+      return this.fact;    
+    } else {
+      this.fact = `${this.species}
+          is ${this.diet} but ${human.name} is ${human.diet} `;
+      return this.fact;    
+    }
+}
+    
+// Create Dino Compare Method 2
+Dino.prototype.heightCompare = function(human){
+    if (this.height > human.height) {
+        this.fact = `${this.species} is larger than ${human.name}`;
+        return this.fact;    
+    } else {
+      this.fact = `${this.species} is smaller than ${human.name}`;
+        return this.fact;    
+    }
+}
+    
+// Create Dino Compare Method 3
+Dino.prototype.weightCompare = function(human){
+    if (this.weight > human.weight) {
+        this.fact = `${this.species} is heavier than ${human.name}`;
+        return this.fact;    
+    } else {
+      this.fact = `${this.species} weigh less than ${human.name}`;
+        return this.fact;    
+    }
+}
+   
