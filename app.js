@@ -76,7 +76,7 @@ Dino.prototype.weightCompare = function(human){
  // Generate Tiles for each Dino in Array
 function generateTile(humanData, dinoData){
 
-    formDino.style.display = "none";
+    document.querySelector('#dino-compare').style.display = "none";
     const mainGrid = document.querySelector('#grid');
     
     dinoData.forEach(element =>{
@@ -120,6 +120,8 @@ const btn = document.querySelector('#btn');
 
 btn.addEventListener('click',() =>{
     let humanData = fetchHumanData();
+    const shuffledDinosData = shuffle(dinosData);
+    generateTile(humanData, shuffledDinosData)
 })
 
 //Helper methods
